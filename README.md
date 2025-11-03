@@ -134,8 +134,20 @@ python scripts/ingest_documents.py --directory docs --pattern "*.txt"
 
 ### 4. Run the Application
 
+**Recommended: Run with Streamlit (Interactive UI)**
+
 ```bash
-# Option 1: Direct Python
+# Activate virtual environment
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Run the Streamlit app
+streamlit run streamlit_app.py --server.port 8501 --server.headless true
+```
+
+**Alternative Options:**
+
+```bash
+# Option 1: FastAPI backend (REST API)
 python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
 
 # Option 2: Using script
@@ -147,9 +159,20 @@ docker-compose up
 
 ### 5. Access the Application
 
+**Streamlit Interface (Recommended)**
+- **Interactive UI**: http://localhost:8501
+- Features: Chat interface, document upload, agent reasoning visualization, API call logging
+
+**FastAPI Backend**
 - **Web Interface**: http://localhost:8000
 - **API Documentation**: http://localhost:8000/docs
 - **Health Check**: http://localhost:8000/health
+
+**To Stop the Streamlit App:**
+```bash
+# Press Ctrl+C in the terminal, or
+pkill -f "streamlit run"
+```
 
 ## 🧪 Testing
 
