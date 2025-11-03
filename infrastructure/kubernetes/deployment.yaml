@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: nim-rag-agent
-        image: nim-rag-agent:latest  # Replace with your Docker image
+        image: 178177055725.dkr.ecr.us-east-1.amazonaws.com/nim-rag-agent:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
@@ -57,7 +57,11 @@ spec:
           periodSeconds: 5
           timeoutSeconds: 3
           failureThreshold: 3
+      tolerations:
+      - key: "nvidia.com/gpu"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
       volumes:
       - name: chroma-data
-        persistentVolumeClaim:
-          claimName: chroma-data
+        emptyDir: {}
