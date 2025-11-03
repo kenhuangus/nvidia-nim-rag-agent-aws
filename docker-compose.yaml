@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  nim-rag-agent:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - NIM_API_KEY=${NIM_API_KEY}
+      - NIM_INFERENCE_URL=${NIM_INFERENCE_URL:-https://integrate.api.nvidia.com/v1}
+      - NIM_MODEL=${NIM_MODEL:-llama-3.1-nemotron-nano-8b-instruct}
+      - NIM_EMBEDDING_MODEL=${NIM_EMBEDDING_MODEL:-nvidia/nv-embedqa-e5-v5}
+      - CHROMA_PERSIST_DIR=/data/chroma
+      - COLLECTION_NAME=documents
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - LOG_LEVEL=INFO
+    volumes:
+      - chroma-data:/data/chroma
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  chroma-data:

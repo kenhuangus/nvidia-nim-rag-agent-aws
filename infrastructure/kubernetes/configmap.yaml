@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nim-rag-agent-config
+  namespace: nim-rag-agent
+data:
+  NIM_INFERENCE_URL: "https://integrate.api.nvidia.com/v1"
+  NIM_MODEL: "llama-3.1-nemotron-nano-8b-instruct"
+  NIM_EMBEDDING_MODEL: "nvidia/nv-embedqa-e5-v5"
+  CHROMA_PERSIST_DIR: "/data/chroma"
+  COLLECTION_NAME: "documents"
+  API_HOST: "0.0.0.0"
+  API_PORT: "8000"
+  API_RELOAD: "false"
+  MAX_ITERATIONS: "10"
+  TEMPERATURE: "0.7"
+  MAX_TOKENS: "2048"
+  LOG_LEVEL: "INFO"

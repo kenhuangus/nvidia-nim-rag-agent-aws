@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIM RAG Agent</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 NIM RAG Agent</h1>
+            <p class="subtitle">Powered by NVIDIA NIM and LangGraph</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Chat Area -->
+            <div class="chat-section">
+                <div class="chat-container" id="chatContainer">
+                    <div class="welcome-message">
+                        <h2>Welcome!</h2>
+                        <p>I'm an AI agent that can help answer your questions using retrieval-augmented generation.</p>
+                        <p>Ask me anything, and I'll search through the knowledge base to provide accurate answers.</p>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <textarea
+                        id="queryInput"
+                        placeholder="Ask a question..."
+                        rows="3"
+                    ></textarea>
+                    <button id="sendButton" onclick="sendQuery()">Send</button>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="stats-card">
+                    <h3>System Status</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">Status:</span>
+                        <span id="systemStatus" class="stat-value">Loading...</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Documents:</span>
+                        <span id="docCount" class="stat-value">-</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>Features</h3>
+                    <ul>
+                        <li>✓ Multi-step reasoning</li>
+                        <li>✓ Document retrieval</li>
+                        <li>✓ Source citations</li>
+                        <li>✓ Planning & execution</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
